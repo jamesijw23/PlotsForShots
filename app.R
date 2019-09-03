@@ -1,4 +1,6 @@
-
+##----------------------------------------------------
+## Part 0: Load Packages
+##----------------------------------------------------
 library(shiny)               ## To use Shiny
 library(plyr)                ## Data Frame Manipulation
 library(tidyverse)           ## Data Frame Manipulation
@@ -11,7 +13,29 @@ library(readxl)              ## Read in xlsx files
 
 
 
+##----------------------------------------------------
+## Part 1: Gather Data
+##----------------------------------------------------
 
+path <- "nba_data.xlsx"
+
+nba_data = path %>% 
+  excel_sheets() %>% 
+  set_names() %>% 
+  map(read_excel, path = path)
+
+nba_df = nba_data$modern_nba_legends_08302019     ## Game data
+heatmap_df = nba_data$heat_map_df                 ## Heatmap Data
+radar_df = nba_data$rank_by_year                  ## Radar Plot Data
+player_info = nba_data$nba_player_info            ## Table for Player Info
+timeline_df = nba_data$timeline_plot_nba_players  ## Read in Timeline Information
+defintions_df = nba_data$basketball_definitions   ## Basketball Definitions
+
+
+
+##----------------------------------------------------
+## Part 2: Important Functions
+##----------------------------------------------------
 ##------------------------------------
 ## Name: create_rank_df
 ## Purpose: To create a rank and hover matrices 
@@ -179,7 +203,9 @@ convert_to_stat = function(x){
 }
 
 
-# Define UI for application that draws a histogram
+##----------------------------------------------------
+## Part 3: User Input
+##----------------------------------------------------
 ui <- fluidPage(
   
   # Application title
@@ -463,22 +489,13 @@ ui <- fluidPage(
   
 ) ## Fluid Page
 
-# Define server logic required to draw a histogram
+##----------------------------------------------------
+## Part 4: Server Component
+##----------------------------------------------------
 server <- function(input, output) {
   
   
-  ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  ## Load Data
-  ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  setwd("C:/Users/james/OneDrive/Documents/Important_Files/Stat_ed_2018_papers/paper_0_bball_data/0_basketball_data")
-  nba_df = read_csv('modern_nba_legends_08302019.csv')     ## Game data
-  player_info = read_csv('nba_player_info.csv')            ## Table for Player Info
-  radar_df = read_csv('rank_by_year.csv')                  ## Radar Plot Data
-  heatmap_df = read_csv('heat_map_df.csv')                 ## Heatmap Data
-  timeline_df = read_csv('timeline_plot_nba_players.csv')  ## Read in Timeline Information
-  defintions_df = read_xlsx('basketball_definitions.xlsx' )## Basketball Definitions
 
-  
   ## Modifications to Variables 
   nba_df$X3P = nba_df$`3P`
   
@@ -1086,15 +1103,11 @@ server <- function(input, output) {
   ## Server Function 2: Timeline
   ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   output$myNBAtime <- renderPlotly({
-    timeline_df$start = as.Date(as.character(timeline_df$start),
-                                format = "%m/%d/%Y")
-    timeline_df$end = as.Date(as.character(timeline_df$end),
-                              format = "%m/%d/%Y")
     
     p = vistime(timeline_df,
                 events="Position",
                 groups="Name",
-                title="Players in League",)
+                title="Players in League")
     pp <- plotly_build(p)
     for(i in grep("yaxis*", names(pp$x$layout))){
       pp$x$layout[[i]]$tickfont <- list(size = 12)
