@@ -1,0 +1,11 @@
+<style>
+.reveal h1, .reveal h2, .reveal h3 {
+  word-wrap: normal;
+  -moz-hyphens: none;
+ 
+}
+.reveal .slides section .slideContent{
+    font-size: 20pt;
+}
+
+</style>

@@ -1,0 +1,151 @@
+<style>
+.footer {
+    color: black;
+    background: #E8E8E8;
+    position: fixed;
+    top: 90%;
+    text-align:center;
+    width:100%;
+}
+</style>
+
+ 
+```{r load_lib_data, echo=FALSE}
+library(readr)               ## Read in CSVs file
+library(htmlTable)           ## Display HTML Tables
+library(tidyverse)           ## Data Frame Manipulation
+library(magrittr)
+
+setwd("C:/Users/james/OneDrive/Documents/Important_Files/Stat_ed_2018_papers/paper_0_bball_data/0_basketball_data")
+
+player_info = read_csv('nba_player_info.csv')
+```
+
+SLO High School 
+========================================================
+author: Immanuel Williams Ph.D.
+date: September 11, 2019 
+autosize: true
+font-import: http://fonts.googleapis.com/css?family=Bree Serif
+font-family: 'Bree Serif'
+css: style.css
+
+<!-- TO Change Fonts -->
+<!-- https://fonts.google.com/ -->
+Who is the G.O.A.T.?
+========================================================
+Who is the better player Jordan or James?
+
+Let's do a poll:
+- Raise your hand for Jordan
+- Raise your hand for James
+
+
+<div align="center">
+<img src="mj_lj.png" width=800 height=350>
+</div>
+
+
+
+An Even Harder Question...
+========================================================
+Should Kobe Byrant be added to this discussion?
+
+Let's do a poll: 
+- Raise your hand if Kobe should be added
+- Raise your hand if Kobe should **NOT** be added
+
+<div align="center">
+<img src="kb_image.jpg" width=400 height=350>
+</div>
+
+Lets Hear It!
+========================================================
+incremental: true
+Raise your hand and let us hear your opinion!!
+
+<br />
+<br />
+
+<font size="15"><span style="font-weight:bold; color:red;">Can you back up your claims with up data???</span></font>
+
+
+Facts
+========================================================
+incremental: true
+**Valid Points**, but let's look at the data together 
+
+ 
+```{r accolades, echo=FALSE, message=FALSE, warning=FALSE,results='asis'}
+
+player_info = player_info %>%
+  filter(Info_Name %in% c('Age entered the League',
+                          'Positions',
+                          'Height',
+                          'Weight',
+                          'NBA Finals',
+                          'NBA All-Star Game Selections',
+                          'All-Star MVPs',
+                          'Number of Seasons'))
+
+colnames(player_info)[1]=''
+rownames(player_info) =NULL
+
+print( htmlTable(player_info,css.cell="padding-left: .5em; padding-right:
+                 .5em; align: left; align: left; vertical-align: top;",
+                 rnames=FALSE,caption="Source:  www.basketball-reference.com",
+                 align="c",
+                 pos.caption = "bottom"))
+
+``` 
+
+
+<font size="15"><span style="font-weight:bold; color:red;">What type 
+of information would help compare these players better?</span></font>
+<!-- Lets look at position, which position did each player play? -->
+<!-- - MJ and KB played shooting guard  -->
+<!-- LJ  played power forward  and small forward  -->
+<!-- It is known that Kobe also played... -->
+<!-- Shooting guard main responsibilities are to shoot and pass the ball -->
+<!-- Power forward main responsibility it to rebound and .... -->
+<!-- Small forward main responsibility is to... -->
+<!-- Why do you mentioning there position is important? -->
+<!-- What about the rings? Who had more championships? But Who appeared in more? -->
+<!-- What about rookie of the year, who earned it? MJ and LJ but not Kobe -->
+<!-- Lebron and Jordan but not Kobe. -->
+<!-- There are alot of accolades here and in general but let's look at one more comparison ... -->
+<!-- Let's look at the each players time line so that we get a better understanding of each player's brief history  -->
+
+
+First Season 
+========================================================
+incremental: true
+Let's Look at their 1st seaon in the NBA in terms of:
+- Points (Jitter Plot)
+- Assists (Histogram)
+- Defensive Rebounds (Box Plot)
+- Offensive Statistics (Radar Plot)
+- Defensive Statistics (Heatmap)
+
+
+
+
+
+
+
+It's not enough... 
+========================================================
+incremental: true
+To only look at the first year.
+
+Should Kobe Bryant be added to this discusion? 
+
+Get in groups of 3 to work to answer this question.
+
+Select 3 different graphics to answer this question. Provide
+two sentences that explain why you choose this graphic and how
+does it answer the question.
+
+<div align="center">
+<img src="viz_points.png" width=400 height=350>
+</div>
