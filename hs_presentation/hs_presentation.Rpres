@@ -11,14 +11,14 @@
 
  
 ```{r load_lib_data, echo=FALSE}
-library(readr)               ## Read in CSVs file
+library(readxl)               ## Read in xlsx files
 library(htmlTable)           ## Display HTML Tables
 library(tidyverse)           ## Data Frame Manipulation
 library(magrittr)
 
-setwd("C:/Users/james/OneDrive/Documents/Important_Files/Stat_ed_2018_papers/paper_0_bball_data/0_basketball_data")
+setwd("C:/Users/james/OneDrive/Documents/Important_Files/Stat_ed_2018_papers/paper_0_bball_data/PlotsForShots")
 
-player_info = read_csv('nba_player_info.csv')
+player_info = read_xlsx('nba_data.xlsx',sheet = 'nba_player_info')
 ```
 
 SLO High School 
@@ -38,7 +38,7 @@ Who is the better player Jordan or James?
 
 Let's do a poll:
 - Raise your hand for Jordan
-- Raise your hand for James
+- Raise your hand for James 
 
 
 <div align="center">
