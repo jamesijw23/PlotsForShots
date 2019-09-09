@@ -40,7 +40,7 @@ Let's do a poll:
 
 An Even Harder Question...
 ========================================================
-Should Kobe Byrant be added to this discussion?
+Should Kobe Bryant be added to this discussion?
 
 Let's do a poll: 
 - Raise your hand if Kobe should be added
@@ -177,8 +177,7 @@ Let's Look at their 1st seaon in the NBA in terms of:
 - Points (Jitter Plot)
 - Assists (Histogram)
 - Defensive Rebounds (Box Plot)
-- Offensive Statistics (Radar Plot)
-- Defensive Statistics (Heatmap)
+
 
 
 
@@ -191,14 +190,38 @@ It's not enough...
 incremental: true
 To only look at the first year.
 
-Should Kobe Bryant be added to this discusion? 
+Should Kobe Bryant be added to this discussion? 
 
-Get in groups of 3 to work to answer this question.
+Get in groups of 3 to work to answer this question. 
 
 Select 3 different graphics to answer this question. Provide
 two sentences that explain why you choose this graphic and how
-does it answer the question.
+does it answer the question. Come up with a group name to turn in
+answers.
 
-<div align="center">
-<img src="viz_points.png" width=400 height=350>
-</div>
+
+
+Points Breakdown 
+========================================================
+<table class="table table-striped" style="font-size: 50px; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Visualizations </th>
+   <th style="text-align:left;"> Points </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Jitter </td>
+   <td style="text-align:left;"> 3 Points </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Histogram </td>
+   <td style="text-align:left;"> 2 Points </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Boxplot </td>
+   <td style="text-align:left;"> 1 Point </td>
+  </tr>
+</tbody>
+</table>

@@ -16,12 +16,12 @@ library(readxl)              ## Read in xlsx files
 ##----------------------------------------------------
 ## Part 1: Gather Data
 ##----------------------------------------------------
-
+setwd("C:/Users/james/OneDrive/Documents/Important_Files/Stat_ed_2018_papers/paper_0_bball_data/PlotsForShots")
 path <- "nba_data.xlsx"
 
 nba_data = path %>% 
   excel_sheets() %>% 
-  set_names() %>% 
+  purrr::set_names() %>% 
   map(read_excel, path = path)
 
 nba_df = nba_data$modern_nba_legends_08302019     ## Game data
@@ -235,9 +235,10 @@ ui <- fluidPage(
                  selectInput("grapht", h3("Select Visualization"),
                              choices = list( "Jitter Plot"= 1,
                                              "Histogram" = 3,
-                                             "Box Plot" = 4,
-                                             "Radar Plot" = 5,
-                                             "Heatmap" = 6), selected = 1),
+                                             "Box Plot" = 4#,
+                                             #"Radar Plot" = 5,
+                                             #"Heatmap" = 6
+                                             ), selected = 1),
                  
                  conditionalPanel(
                    ##***********************************
@@ -453,7 +454,8 @@ ui <- fluidPage(
                                "Offense" = 1,
                                "Defense" = 2,
                                "Both" = 3,
-                               "Positions" = 4),
+                               "Positions" = 4,
+                               "Graphics" = 5),
                              selected = 1),
 
 
@@ -598,9 +600,8 @@ server <- function(input, output) {
         geom_jitter(size=1.75,width = 0.15)+ 
         theme_bw()  +
         scale_y_continuous(minor_breaks = seq(0 , 70, 5)) +
-        #geom_errorbar(aes(ymin=`2 SDs Below Mean`, 
-        #                  ymax=`2 SDs Above Mean` ), width=.2,
-        #              position=position_dodge(0.05)) +
+        stat_summary(fun.y=mean, geom="point", shape=12,
+                     size=3, color="green") +
         ggtitle(paste0("Average ",abvstat_to_statname(imp_stat_1),' Across ', length(imp_years), ' Sesaons' ))+
         facet_grid(~Season) +
         xlab('Player') +
@@ -1009,7 +1010,7 @@ server <- function(input, output) {
       
       
       ##-----------------------------------------------------------
-      ## Heatmap 1: Plot of Heatmap
+      ##  Plot of Heatmap
       ##-----------------------------------------------------------
       
       
@@ -1188,7 +1189,9 @@ server <- function(input, output) {
     paste(
       "https://www.basketballforcoaches.com/basketball-terms/",
       "https://hoopsu.com/basketball-terminology/",
-      "www.ducksters.com", sep='\n') 
+      "www.ducksters.com",
+      "https://datavizcatalogue.com/methods/radar_chart.html",
+      sep='\n') 
     
   })
   
